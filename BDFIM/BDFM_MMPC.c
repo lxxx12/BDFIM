@@ -398,10 +398,10 @@ void MMPC_Control_Method()
 		//First Vector Prediction
 		MMPC_Error_i2d_k_2_Vector1 = MMPC_Error_i2d_k_2_Vector0  + H33_MMPC * MMPC_u2d_k_1[veci[MMPC_i][0]];
 		MMPC_Error_i2q_k_2_Vector1 = MMPC_Error_i2q_k_2_Vector0  + H44_MMPC * MMPC_u2q_k_1[veci[MMPC_i][0]];
-		temp_MMPC= (MMPC_Error_i2d_k_2_Vector1+ MMPC_i2d_ref)*(MMPC_Error_i2d_k_2_Vector1+ MMPC_i2d_ref)+(MMPC_Error_i2q_k_2_Vector1+MMPC_i2q_ref)*(MMPC_Error_i2q_k_2_Vector1+MMPC_i2q_ref);
-		if(temp_MMPC>140)
-			gi1=100000000;
-		else
+//		temp_MMPC= (MMPC_Error_i2d_k_2_Vector1+ MMPC_i2d_ref)*(MMPC_Error_i2d_k_2_Vector1+ MMPC_i2d_ref)+(MMPC_Error_i2q_k_2_Vector1+MMPC_i2q_ref)*(MMPC_Error_i2q_k_2_Vector1+MMPC_i2q_ref);
+//		if(temp_MMPC>140)
+//			gi1=100000000;
+//		else
 			gi1 = (MMPC_Error_i2d_k_2_Vector1 * MMPC_Error_i2d_k_2_Vector1 + MMPC_Error_i2q_k_2_Vector1 * MMPC_Error_i2q_k_2_Vector1);
 
 
@@ -409,10 +409,10 @@ void MMPC_Control_Method()
 		//Second Vector Prediction
 		MMPC_Error_i2d_k_2_Vector2 = MMPC_Error_i2d_k_2_Vector0  + H33_MMPC * MMPC_u2d_k_1[veci[MMPC_i][1]];
 		MMPC_Error_i2q_k_2_Vector2 = MMPC_Error_i2q_k_2_Vector0  + H44_MMPC * MMPC_u2q_k_1[veci[MMPC_i][1]];
-		temp_MMPC= (MMPC_Error_i2d_k_2_Vector1+ MMPC_i2d_ref)*(MMPC_Error_i2d_k_2_Vector1+ MMPC_i2d_ref)+(MMPC_Error_i2q_k_2_Vector1+MMPC_i2q_ref)*(MMPC_Error_i2q_k_2_Vector1+MMPC_i2q_ref);
-		if(temp_MMPC>140)
-			gi2=100000000;
-		else
+//		temp_MMPC= (MMPC_Error_i2d_k_2_Vector1+ MMPC_i2d_ref)*(MMPC_Error_i2d_k_2_Vector1+ MMPC_i2d_ref)+(MMPC_Error_i2q_k_2_Vector1+MMPC_i2q_ref)*(MMPC_Error_i2q_k_2_Vector1+MMPC_i2q_ref);
+//		if(temp_MMPC>140)
+//			gi2=100000000;
+//		else
 			gi2 = (MMPC_Error_i2d_k_2_Vector2 * MMPC_Error_i2d_k_2_Vector2 + MMPC_Error_i2q_k_2_Vector2 * MMPC_Error_i2q_k_2_Vector2);
 
 
@@ -542,8 +542,8 @@ void MMPC_duty()//’ºø’±»º∆À„
      }
      motor_model_simulation();
 
-     i2_alf = cos(field_oriented_theta)*MMPC_i2d_k_1-sin(field_oriented_theta)*MMPC_i2q_k_1;
-     i2_beta = sin(field_oriented_theta)*MMPC_i2d_k_1+cos(field_oriented_theta)*MMPC_i2q_k_1;
+     i2_alf = cos(field_oriented_theta)*idq_out.d-sin(field_oriented_theta)*idq_out.q;
+     i2_beta = sin(field_oriented_theta)*idq_out.d+cos(field_oriented_theta)*idq_out.q;
      gxy=gx*gy;
 
 }
