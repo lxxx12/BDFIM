@@ -52,8 +52,8 @@ interrupt void timer0_isr(void)
 //	buffer0[buff_count]=MMPC_u1d_k;
 //	buffer1[buff_count]=MMPC_u1q_k;
 //	buffer0[buff_count]=theta_r;
-	buffer0[buff_count]=icd_li;
-	buffer1[buff_count]=icq_li;
+	buffer0[buff_count]=i2_alf;
+	buffer1[buff_count]=i2_beta;
 
 //modified by lixuan 1101
 //	buffer0[buff_count]=idq_out.d;
